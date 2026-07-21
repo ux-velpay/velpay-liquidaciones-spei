@@ -32,9 +32,8 @@
 
   .vel-header{background:var(--vel-purple-900);display:flex;align-items:center;justify-content:space-between;padding:18px 48px;}
   .vel-header-left{display:flex;align-items:center;gap:14px;}
-  .vel-brand{display:flex;align-items:center;gap:10px;color:#fff;font-size:18px;font-weight:500;}
-  .vel-brand-mark{width:24px;height:24px;border:2px solid #fff;transform:rotate(45deg);border-radius:4px;}
-  .vel-brand-sep{width:1px;height:22px;background:rgba(255,255,255,0.35);}
+  .vel-brand{display:flex;align-items:center;color:#fff;}
+  .vel-logo{height:28px;width:auto;display:block;}
   .vel-nav{display:flex;align-items:center;gap:16px;margin-left:70px;}
   .vel-nav a{color:#fff;font-size:14px;font-weight:500;text-decoration:none;padding:10px 24px;border-radius:40px;white-space:nowrap;}
   .vel-nav a.active{background:#fff;color:var(--vel-purple-700);}
@@ -127,7 +126,7 @@
   .vel-suc-cell.liquidar{color:var(--vel-purple-500);font-weight:600;}
   .vel-suc-sub{display:flex;flex-direction:column;gap:2px;}
   .vel-suc-sub .vel-suc-sub-name{font-size:14px;font-weight:600;color:var(--vel-text);}
-  .vel-suc-sub .vel-suc-clabe{font-size:11px;color:var(--vel-muted);}
+  .vel-suc-sub .vel-suc-clabe{font-size:11px;color:#3c3489;background:#eeedfe;padding:2px 8px;border-radius:4px;align-self:flex-start;font-variant-numeric:tabular-nums;margin-top:1px;}
 
   .vel-btn-dispersar.loading{background:#8b6cf0;cursor:default;}
   .vel-btn-dispersar:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;pointer-events:none;}
@@ -152,16 +151,65 @@
   .vel-toast-msg{font-size:13px;color:#9ca3af;margin:4px 0 0;line-height:1.45;}
   .vel-toast-close{flex-shrink:0;background:none;border:none;padding:0;cursor:pointer;color:#9ca3af;display:flex;align-items:center;justify-content:center;width:20px;height:20px;}
   .vel-toast-close:hover{color:#fff;}
+
+  .vel-modal-overlay{position:fixed;inset:0;background:rgba(17,24,39,0.45);display:flex;align-items:center;justify-content:center;z-index:1100;padding:20px;}
+  .vel-modal{background:#fff;border-radius:12px;box-shadow:0 20px 48px rgba(16,24,40,0.24);padding:28px;width:420px;max-width:100%;}
+  .vel-modal-title{font-size:18px;font-weight:600;color:var(--vel-text);margin:0 0 10px;}
+  .vel-modal-msg{font-size:14px;color:var(--vel-text-secondary);line-height:1.5;margin:0 0 24px;}
+  .vel-modal-actions{display:flex;justify-content:flex-end;gap:12px;}
+  .vel-modal-stay{background:var(--vel-purple-900);color:#fff;border:none;border-radius:8px;font:inherit;font-weight:500;font-size:14px;padding:10px 20px;cursor:pointer;}
+  .vel-modal-stay:hover{background:#3a0a8c;}
+  .vel-modal-leave{background:#fff;color:var(--vel-text);border:1px solid var(--vel-border);border-radius:8px;font:inherit;font-weight:500;font-size:14px;padding:10px 20px;cursor:pointer;}
+  .vel-modal-leave:hover{background:#f3f4f6;}
+
+  .vel-confirm{background:#fff;border:1px solid var(--vel-border);border-radius:16px;box-shadow:0 1px 2px rgba(16,24,40,0.05);padding:28px;width:484px;max-width:100%;display:flex;flex-direction:column;gap:24px;}
+  .vel-confirm-header{display:flex;align-items:center;justify-content:space-between;}
+  .vel-confirm-title-wrap{display:flex;align-items:center;gap:12px;}
+  .vel-confirm-icon{background:#f5f3ff;padding:8px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .vel-confirm-title{font-size:20px;font-weight:500;color:#111827;margin:0;}
+  .vel-confirm-close{background:#f3f4f6;border:none;padding:4px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .vel-confirm-close:hover{background:#e5e7eb;}
+  .vel-confirm-desc{font-size:14px;color:#4b5563;line-height:1.4;margin:0;}
+  .vel-confirm-summary{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;}
+  .vel-confirm-row{display:flex;align-items:center;justify-content:space-between;}
+  .vel-confirm-row .k{font-size:13px;font-weight:500;color:#6b7280;}
+  .vel-confirm-row .v{font-size:14px;font-weight:600;color:#111827;font-variant-numeric:tabular-nums;}
+  .vel-confirm-row .v.monto{font-size:18px;font-weight:500;color:var(--vel-purple-500);}
+  .vel-confirm-div{height:1px;background:var(--vel-border);}
+  .vel-confirm-warning{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
+  .vel-confirm-warning svg{flex-shrink:0;margin-top:2px;}
+  .vel-confirm-warning p{font-size:13px;font-weight:500;color:#92400e;line-height:1.4;margin:0;}
+  .vel-confirm-actions{display:flex;justify-content:flex-end;gap:12px;}
+  .vel-confirm-cancel{background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:12px 20px;font:inherit;font-weight:500;font-size:15px;color:#374151;cursor:pointer;}
+  .vel-confirm-cancel:hover{background:#f9fafb;}
+  .vel-confirm-cancel:disabled{opacity:.5;cursor:not-allowed;}
+  .vel-confirm-ok{background:var(--vel-purple-500);border:none;border-radius:8px;padding:12px 24px;font:inherit;font-weight:500;font-size:15px;color:#fff;cursor:pointer;box-shadow:0 1px 1px rgba(16,24,40,0.05);}
+  .vel-confirm-ok:hover{background:#6238e0;}
+  .vel-confirm-ok.loading{background:#8b6cf0;cursor:default;}
 </style>
 </head>
 <body>
   <header class="vel-header">
     <div class="vel-header-left">
       <div class="vel-brand">
-        <span class="vel-brand-mark" aria-hidden="true"></span>
-        <span>Velpay</span>
-        <div class="vel-brand-sep"></div>
-        <span>Backoffice</span>
+        <svg class="vel-logo" width="253" height="36" viewBox="0 0 253 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Velpay Backoffice">
+          <mask id="mask0_53_499" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="33">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H39.6679V32.6814H0V0Z" fill="white"/>
+          </mask>
+          <g mask="url(#mask0_53_499)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M33.7476 15.2685L31.6415 17.3746L31.643 17.3704C31.643 17.3704 31.2702 17.7586 30.882 17.3704L30.8831 17.3743L22.2608 8.75181C22.1731 8.62959 22.0483 8.3691 22.2931 8.0955L26.5985 3.74818C26.7278 3.65716 26.9999 3.53144 27.2811 3.81242L27.275 3.79433L35.8325 12.3516L35.8295 12.3505C35.8295 12.3505 36.1605 12.6697 35.9028 13.0249L33.7476 15.2685ZM20.1069 28.8768C19.9788 28.9679 19.7046 29.0976 19.4216 28.8144L19.4231 28.8196L5.89723 15.2939L3.86812 13.2013L3.87255 13.2026C3.87255 13.2026 3.48431 12.8301 3.87255 12.4418L3.87182 12.442L7.00308 9.23986L20.1362 22.3728L22.28 20.2741L9.13852 7.17013L12.4502 3.85666C12.5233 3.79038 12.8463 3.5369 13.184 3.86164L28.8193 19.4973C28.9064 19.6077 29.0731 19.8929 28.7925 20.1912L20.1069 28.8768ZM39.1605 11.5462L28.1219 0.508216C27.444 -0.169507 26.3404 -0.169322 25.6625 0.508401L19.8251 6.34594L13.9874 0.508216C13.3093 -0.169876 12.2059 -0.169322 11.528 0.508401L0.505508 11.5392C-0.1628 12.2088 -0.169261 13.3046 0.490924 13.9816L3.79739 17.375L18.5956 32.1731C18.9346 32.5118 19.3798 32.6813 19.8251 32.6813C20.2702 32.6813 20.7159 32.5117 21.055 32.1729L31.4454 21.7826L35.8612 17.3669L39.171 13.9951C39.8376 13.3174 39.833 12.2186 39.1605 11.5462V11.5462Z" fill="white"/>
+          </g>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M137.246 9.2255C135.746 9.2255 134.526 10.4458 134.526 11.946C134.526 13.4462 135.746 14.6667 137.246 14.6667C138.746 14.6667 139.967 13.4462 139.967 11.946C139.967 10.4458 138.746 9.2255 137.246 9.2255M137.246 15.3921C135.346 15.3921 133.8 13.8463 133.8 11.946C133.8 10.046 135.346 8.5 137.246 8.5C139.146 8.5 140.692 10.046 140.692 11.946C140.692 13.8463 139.146 15.3921 137.246 15.3921" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M62.9287 8.13H60.201C59.9401 8.13 59.7086 8.29764 59.6272 8.54557L54.5868 23.8921C54.4056 24.4447 53.6248 24.4467 53.4402 23.8954L48.3073 8.55813C48.225 8.31185 47.9942 8.1457 47.7347 8.1457H45.0544C44.635 8.1457 44.3433 8.56293 44.4871 8.9569L51.8307 29.0735C51.9177 29.3119 52.1442 29.4703 52.398 29.4703H55.7507C56.006 29.4703 56.2336 29.3096 56.3195 29.0691L63.4977 8.93677C63.6378 8.54354 63.3463 8.13 62.9287 8.13" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M72.0238 19.6214H66.0064C65.8314 19.6214 65.6952 19.4578 65.7378 19.2882C66.1811 17.5192 67.4776 16.46 69.3044 16.46C70.8932 16.46 72.131 17.4584 72.2994 19.3269C72.3138 19.485 72.1824 19.6214 72.0238 19.6214M69.3944 13.54C64.8612 13.54 61.6699 16.8208 61.6699 21.5036C61.6699 25.8279 64.8014 29.4663 69.8423 29.4663C72.988 29.4663 75.1256 27.9648 75.7596 27.4558C75.8752 27.3631 75.9091 27.2025 75.839 27.0722L74.665 24.8919C74.5773 24.7292 74.3692 24.6794 74.2201 24.7883C73.6027 25.2382 72.0095 26.2451 70.1104 26.2451C67.9812 26.2451 66.0359 25.0349 65.6102 22.6874C65.5662 22.4446 65.754 22.2195 66.0006 22.2195L75.7363 22.2194C75.9115 22.2194 76.0574 22.0853 76.071 21.9111C76.0974 21.5751 76.1351 21.0474 76.1351 20.7579C76.1351 16.7313 73.7785 13.54 69.3944 13.54" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M93.2776 26.2741C90.7726 26.2741 89.4901 23.9479 89.4901 21.5923C89.4901 18.2219 91.3392 16.79 93.3075 16.79C95.544 16.79 97.0953 18.6691 97.0953 21.5623C97.0953 24.5743 95.3658 26.2741 93.2776 26.2741M94.171 13.54C91.3637 13.54 89.9508 15.0816 89.4719 15.7464C89.4118 15.83 89.2794 15.7857 89.2794 15.6827V14.7757C89.2794 14.2911 88.8865 13.8982 88.4019 13.8982H86.6974C86.2127 13.8982 85.8201 14.2911 85.8201 14.7757V34.2583C85.8201 34.7086 86.1851 35.0736 86.6353 35.0736H88.7924C89.2425 35.0736 89.6076 34.7086 89.6076 34.2583V28.6912V27.8187C89.6076 27.6788 89.7803 27.6105 89.8733 27.7152C90.398 28.3054 91.7156 29.4661 93.962 29.4661C97.9583 29.4661 100.911 26.3346 100.911 21.5034C100.911 16.7909 98.2862 13.54 94.171 13.54" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M111.746 22.5176C111.746 24.3667 110.314 26.5142 108.316 26.5142C106.766 26.5142 106.02 25.5601 106.02 24.5456C106.02 22.4281 109.151 22.16 111.09 22.16H111.746V22.5176ZM109.149 13.54C106.658 13.54 104.764 14.4354 103.829 14.9902C103.456 15.2117 103.324 15.6853 103.526 16.0689L104.464 17.8456C104.543 17.9967 104.733 18.0496 104.877 17.9581C105.487 17.5702 107.084 16.672 108.791 16.672C110.461 16.672 111.714 17.3575 111.714 19.3558V19.5648H111.207C108.731 19.5648 102.2 19.8925 102.2 24.7244C102.2 27.7663 104.645 29.4661 107.36 29.4661C110.819 29.4661 112.012 26.7825 111.982 26.7825H112.041V28.6311C112.041 29.0922 112.415 29.4661 112.877 29.4661H114.632C115.096 29.4661 115.471 29.0902 115.471 28.6268V19.5947C115.471 15.7473 113.145 13.54 109.149 13.54V13.54Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M132.534 13.5H128.88C128.783 13.5 128.696 13.5626 128.666 13.6549L124.844 25.3362H124.784L120.684 13.6953C120.643 13.5783 120.532 13.5 120.408 13.5H116.793C116.583 13.5 116.441 13.7143 116.524 13.9073L123.109 29.3308C123.15 29.4271 123.151 29.5359 123.11 29.6322L122.607 30.8236C121.998 32.1447 121.12 32.4711 120.076 32.4711C119.493 32.4711 118.923 32.1862 118.614 32.0007C118.484 31.923 118.318 31.9769 118.256 32.1153L117.21 34.4832C117.159 34.5984 117.197 34.7313 117.305 34.7976C117.729 35.0594 118.861 35.6623 120.285 35.6623C122.581 35.6623 124.605 34.7904 125.678 32.0164L132.744 13.8063C132.801 13.659 132.692 13.5 132.534 13.5" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M83.6775 26.0937L83.6773 26.0932C83.5815 26.0989 83.4705 26.1042 83.349 26.1042C82.3645 26.1042 81.7979 25.687 81.7979 24.0164V8.97415C81.7979 8.51889 81.4288 8.15002 80.9738 8.15002H78.8642C78.4089 8.15002 78.04 8.51889 78.04 8.97415V24.5828C78.04 28.9379 80.6348 29.4744 82.7226 29.4744C82.8533 29.4744 82.9815 29.4707 83.1026 29.4644C83.5595 29.4412 83.9156 29.059 83.9156 28.6013V26.2787C83.9156 26.0647 83.6775 26.0937 83.6775 26.0937" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M136.2 13.328V10.551C136.2 10.4676 136.268 10.4 136.351 10.4H137.581C138.202 10.4 138.512 10.6714 138.512 11.214C138.512 11.581 138.271 11.8851 137.788 12.1258L138.651 13.304C138.692 13.3603 138.652 13.4395 138.583 13.4395H138.085C138.057 13.4395 138.031 13.4259 138.015 13.403L137.116 12.1153V11.8581C137.654 11.766 137.924 11.557 137.924 11.2312C137.924 11.0072 137.797 10.8952 137.545 10.8952H136.83C136.799 10.8952 136.774 10.9206 136.774 10.9518V13.328C136.774 13.3871 136.726 13.4351 136.667 13.4351H136.307C136.248 13.4351 136.2 13.3871 136.2 13.328" fill="white"/>
+          <path d="M149.402 5.61111V30.0556" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M162.944 24V12.12H167.174C169.982 12.12 171.224 13.38 171.224 15.396C171.224 16.602 170.504 17.7 169.226 17.952V17.97C170.63 18.24 171.53 19.374 171.53 20.67C171.53 22.686 169.964 24 167.156 24H162.944ZM164.384 17.34H167.192C168.884 17.34 169.712 16.71 169.712 15.396C169.712 14.1 168.884 13.47 167.192 13.47H164.384V17.34ZM164.384 22.65H167.498C169.19 22.65 170.018 21.93 170.018 20.67C170.018 19.41 169.19 18.69 167.498 18.69H164.384V22.65ZM181.814 22.956C182.048 22.956 182.318 22.92 182.534 22.866L182.444 24C182.192 24.09 181.814 24.18 181.364 24.18C180.482 24.18 179.906 23.856 179.744 22.848C179.168 23.694 177.998 24.18 176.846 24.18C175.154 24.18 173.786 23.388 173.786 21.768C173.786 20.418 174.974 19.356 177.296 18.96L179.69 18.564V18.06C179.69 16.872 178.934 16.08 177.584 16.08C176.396 16.08 175.496 16.656 175.01 17.79L173.948 17.016C174.416 15.684 175.838 14.82 177.584 14.82C179.636 14.82 181.13 15.792 181.13 17.88V22.308C181.13 22.74 181.31 22.956 181.814 22.956ZM176.918 22.92C178.358 22.92 179.69 22.164 179.69 20.976V19.734L177.674 20.112C176.09 20.4 175.28 20.922 175.28 21.768C175.28 22.524 175.892 22.92 176.918 22.92ZM188.427 14.82C190.281 14.82 191.487 15.738 192.153 17.214L190.785 17.862C190.407 16.71 189.633 16.08 188.391 16.08C186.591 16.08 185.511 17.358 185.511 19.5C185.511 21.642 186.591 22.92 188.391 22.92C189.795 22.92 190.641 22.254 190.911 21.066L192.243 21.534C191.631 23.19 190.335 24.18 188.427 24.18C185.709 24.18 184.071 22.416 184.071 19.5C184.071 16.584 185.709 14.82 188.427 14.82ZM201.161 24L198.137 19.554L196.229 21.462V24H194.789V10.86H196.229V19.662L200.891 15H202.691L199.181 18.51L202.907 24H201.161ZM208.484 14.82C211.202 14.82 212.84 16.584 212.84 19.5C212.84 22.416 211.202 24.18 208.484 24.18C205.766 24.18 204.128 22.416 204.128 19.5C204.128 16.584 205.766 14.82 208.484 14.82ZM208.484 16.062C206.666 16.062 205.568 17.358 205.568 19.5C205.568 21.642 206.666 22.938 208.484 22.938C210.302 22.938 211.4 21.642 211.4 19.5C211.4 17.358 210.302 16.062 208.484 16.062ZM217.621 13.632V15H220.627V16.242H217.621V24H216.181V16.242H214.381V15H216.181V13.488C216.181 11.886 217.153 10.77 219.133 10.77C219.763 10.77 220.339 10.914 220.663 11.184L220.285 12.354C219.997 12.174 219.673 12.084 219.259 12.084C218.215 12.084 217.621 12.552 217.621 13.632ZM225.059 12.084C224.015 12.084 223.421 12.552 223.421 13.632V15H226.427V16.242H223.421V24H221.981V16.242H220.181V15H221.981V13.488C221.981 11.886 222.953 10.77 224.933 10.77C225.563 10.77 226.139 10.914 226.463 11.184L226.085 12.354C225.797 12.174 225.473 12.084 225.059 12.084ZM229.073 11.112C229.721 11.112 230.153 11.544 230.153 12.192C230.153 12.84 229.721 13.272 229.073 13.272C228.425 13.272 227.993 12.84 227.993 12.192C227.993 11.544 228.425 11.112 229.073 11.112ZM228.353 24V15H229.793V24H228.353ZM236.943 14.82C238.797 14.82 240.003 15.738 240.669 17.214L239.301 17.862C238.923 16.71 238.149 16.08 236.907 16.08C235.107 16.08 234.027 17.358 234.027 19.5C234.027 21.642 235.107 22.92 236.907 22.92C238.311 22.92 239.157 22.254 239.427 21.066L240.759 21.534C240.147 23.19 238.851 24.18 236.943 24.18C234.225 24.18 232.587 22.416 232.587 19.5C232.587 16.584 234.225 14.82 236.943 14.82ZM251.027 19.032C251.027 19.446 250.991 19.788 250.955 20.04H244.169C244.349 21.858 245.447 22.92 247.103 22.92C248.417 22.92 249.317 22.452 249.641 21.588L250.847 22.218C250.163 23.442 249.047 24.18 247.103 24.18C244.385 24.18 242.747 22.416 242.747 19.5C242.747 16.584 244.277 14.82 246.995 14.82C249.605 14.82 251.027 16.71 251.027 19.032ZM246.995 16.08C245.393 16.08 244.403 17.07 244.187 18.762H249.641C249.443 17.106 248.525 16.08 246.995 16.08Z" fill="white"/>
+        </svg>
       </div>
       <nav class="vel-nav" aria-label="Navegación principal">
         <a href="#" data-nav>Dashboard</a>
@@ -189,7 +237,7 @@
     <div class="vel-toolbar">
       <div class="vel-summary-card">
         <div><span class="vel-dot" aria-hidden="true"></span><span class="vel-label">Por liquidar 1/08/24</span></div>
-        <p class="vel-value">$410,100.52</p>
+        <p class="vel-value" id="velSummaryValue">$410,100.52</p>
       </div>
       <button class="vel-btn-primary" id="velMainAction">Generar layout</button>
     </div>
@@ -254,6 +302,47 @@
 
   <div class="vel-toast-host" id="velToastHost" aria-live="polite" aria-atomic="false"></div>
 
+  <div class="vel-modal-overlay" id="velConfirmModal" style="display:none;">
+    <div class="vel-confirm" role="dialog" aria-modal="true" aria-labelledby="velConfirmTitle">
+      <div class="vel-confirm-header">
+        <div class="vel-confirm-title-wrap">
+          <span class="vel-confirm-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#754bf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg></span>
+          <h2 class="vel-confirm-title" id="velConfirmTitle">Confirmar dispersión</h2>
+        </div>
+        <button class="vel-confirm-close" id="velConfirmClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6M9 9l6 6"></path></svg></button>
+      </div>
+      <p class="vel-confirm-desc">Verifica con cuidado los detalles de la transferencia antes de continuar con la ejecución del lote SPEI.</p>
+      <div class="vel-confirm-summary">
+        <div class="vel-confirm-row"><span class="k">Comercio</span><span class="v" id="velCfComercio">Brillamont</span></div>
+        <div class="vel-confirm-div"></div>
+        <div class="vel-confirm-row"><span class="k">Sucursal</span><span class="v" id="velCfSucursal">Matriz</span></div>
+        <div class="vel-confirm-div"></div>
+        <div class="vel-confirm-row"><span class="k">Monto neto</span><span class="v monto" id="velCfMonto">$0.00</span></div>
+        <div class="vel-confirm-div"></div>
+        <div class="vel-confirm-row"><span class="k">CLABE destino</span><span class="v" id="velCfClabe">****0000</span></div>
+      </div>
+      <div class="vel-confirm-warning">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
+        <p>Esta acción ejecutará la transferencia SPEI. No se puede deshacer.</p>
+      </div>
+      <div class="vel-confirm-actions">
+        <button class="vel-confirm-cancel" id="velConfirmCancel">Cancelar</button>
+        <button class="vel-confirm-ok" id="velConfirmOk">Confirmar dispersión</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vel-modal-overlay" id="velModal" style="display:none;z-index:1200;">
+    <div class="vel-modal" role="dialog" aria-modal="true" aria-labelledby="velModalTitle">
+      <h2 class="vel-modal-title" id="velModalTitle">¿Salir de la pantalla?</h2>
+      <p class="vel-modal-msg">Hay una dispersión en proceso. Si sales, se detendrá la dispersión y las operaciones seguirán pendientes.</p>
+      <div class="vel-modal-actions">
+        <button class="vel-modal-leave" id="velModalLeave">Salir</button>
+        <button class="vel-modal-stay" id="velModalStay">Permanecer</button>
+      </div>
+    </div>
+  </div>
+
 <script>
 (function(){
   var currentMode = 'adquirente';
@@ -272,7 +361,8 @@
     return [
       { id:0, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285712', scenario:'success', state:'pending' },
       { id:1, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285001', scenario:'already', state:'dispersed' },
-      { id:2, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285777', scenario:'fail', state:'pending' }
+      { id:2, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285777', scenario:'fail', state:'pending' },
+      { id:3, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285123', scenario:'confirm', state:'pending' }
     ];
   }
   var speiRows = speiTemplate();
@@ -321,6 +411,7 @@
   }
 
   renderRows(rows);
+  updateSummary();
 
   document.getElementById('velSearchInput').addEventListener('input', function(e){
     var q = e.target.value.trim().toLowerCase();
@@ -339,24 +430,29 @@
   }
 
   var segments = document.querySelectorAll('.vel-segment');
-  for (var s = 0; s < segments.length; s++){
-    segments[s].addEventListener('click', function(){
-      for (var k = 0; k < segments.length; k++){
-        segments[k].classList.remove('active');
-        segments[k].setAttribute('aria-pressed', 'false');
-      }
-      this.classList.add('active');
-      this.setAttribute('aria-pressed', 'true');
-      currentMode = this.dataset.segment;
-      var mainAction = document.getElementById('velMainAction');
-      var wrap = document.getElementById('velTableWrap');
-      mainAction.style.display = currentMode === 'spei' ? 'none' : '';
-      document.getElementById('velDateFilter').style.display = currentMode === 'spei' ? 'none' : '';
-      if (currentMode === 'spei'){ speiRows = speiTemplate(); }
-      document.getElementById('velSearchInput').value = '';
-      wrap.innerHTML = tableHead();
-      renderRows(activeData());
-      document.getElementById('velResultsCount').textContent = 'Mostrando ' + activeData().length + ' resultados';
+  function applySegment(seg){
+    for (var k = 0; k < segments.length; k++){
+      segments[k].classList.remove('active');
+      segments[k].setAttribute('aria-pressed', 'false');
+    }
+    seg.classList.add('active');
+    seg.setAttribute('aria-pressed', 'true');
+    currentMode = seg.dataset.segment;
+    var mainAction = document.getElementById('velMainAction');
+    var wrap = document.getElementById('velTableWrap');
+    mainAction.style.display = currentMode === 'spei' ? 'none' : '';
+    document.getElementById('velDateFilter').style.display = currentMode === 'spei' ? 'none' : '';
+    if (currentMode === 'spei'){ speiRows = speiTemplate(); }
+    document.getElementById('velSearchInput').value = '';
+    wrap.innerHTML = tableHead();
+    renderRows(activeData());
+    document.getElementById('velResultsCount').textContent = 'Mostrando ' + activeData().length + ' resultados';
+    updateSummary();
+  }
+  for (var sg = 0; sg < segments.length; sg++){
+    segments[sg].addEventListener('click', function(){
+      var self = this;
+      requestLeave(function(){ applySegment(self); });
     });
   }
 
@@ -364,14 +460,46 @@
   var detailView = document.getElementById('velDetailView');
   var sucCard = document.getElementById('velSucCard');
 
+  var dispersingActive = false, dispersTimeout = null, dispersBtn = null, pendingLeave = null;
+
+  function requestLeave(action){
+    if (dispersingActive){
+      pendingLeave = action;
+      document.getElementById('velModal').style.display = 'flex';
+    } else {
+      action();
+    }
+  }
+  function stopDispersion(){
+    if (dispersTimeout){ clearTimeout(dispersTimeout); dispersTimeout = null; }
+    dispersingActive = false;
+    document.getElementById('velConfirmModal').style.display = 'none';
+    confirmRow = null; confirmRowBtn = null;
+    showToast('warning', 'Dispersión detenida', 'Detuviste el proceso durante la dispersión. Las operaciones siguen pendientes.');
+  }
+  document.getElementById('velModalStay').addEventListener('click', function(){
+    document.getElementById('velModal').style.display = 'none';
+    pendingLeave = null;
+  });
+  document.getElementById('velModalLeave').addEventListener('click', function(){
+    document.getElementById('velModal').style.display = 'none';
+    stopDispersion();
+    if (pendingLeave){ var a = pendingLeave; pendingLeave = null; a(); }
+  });
+
   function intFmt(n){ return n.toLocaleString('es-MX'); }
   function money(n){ return '$' + fmt(n); }
 
+  function updateSummary(){
+    var data = activeData();
+    var total = 0;
+    for (var i = 0; i < data.length; i++){ total += data[i].liquidar; }
+    document.getElementById('velSummaryValue').textContent = money(total);
+  }
+
   function sucTemplate(){
     return [
-      { name:'Brillamont Centro', clabe:'328593285712', trx:4873, importeTrx:53603, ventas:4873, importeVentas:53603, cancel:0, importeCancel:0, contra:0, importeContra:0, liquidar:52336.02, scenario:'success', state:'pending' },
-      { name:'Brillamont Norte',  clabe:'328593285001', trx:1200, importeTrx:12000, ventas:1200, importeVentas:12000, cancel:3, importeCancel:150, contra:0, importeContra:0, liquidar:11700, scenario:'already', state:'dispersed' },
-      { name:'Brillamont Sur',    clabe:'328593285777', trx:900,  importeTrx:9000,  ventas:900,  importeVentas:9000,  cancel:1, importeCancel:80,  contra:1, importeContra:200, liquidar:8600, scenario:'fail', state:'pending' }
+      { name:'Brillamont', clabe:'328593285792', trx:4873, importeTrx:53603, ventas:4873, importeVentas:53603, cancel:0, importeCancel:0, contra:0, importeContra:0, liquidar:52336.02 }
     ];
   }
   var sucursales = sucTemplate();
@@ -429,7 +557,7 @@
     if (disp){ handleDispersar(disp); return; }
     var tr = e.target.closest('[data-row-open]');
     if (!tr) return;
-    openSucursales();
+    requestLeave(openSucursales);
   });
 
   function disabledDispersarHTML(){
@@ -437,37 +565,76 @@
       '<span class="vel-tip-box">Este grupo ya fue dispersado exitosamente. El sistema no genera un nuevo envío a STP.</span></span>';
   }
 
+  var confirmRow = null, confirmRowBtn = null;
+
   function handleDispersar(btn){
     var id = parseInt(btn.getAttribute('data-suc-id'), 10);
     var s = null;
     for (var i = 0; i < speiRows.length; i++){ if (speiRows[i].id === id){ s = speiRows[i]; break; } }
-    if (!s) return;
-
-    if (s.state === 'dispersed'){
-      showToast('warning', 'Ya dispersado — 409', 'Este grupo ya fue dispersado exitosamente. El sistema no genera un nuevo envío a STP.');
-      return;
-    }
-
-    btn.disabled = true;
-    btn.classList.add('loading');
-    btn.innerHTML = '<span class="vel-spinner" aria-hidden="true"></span>Dispersando..';
-
-    setTimeout(function(){
-      if (s.scenario === 'success'){
-        var uuid = genUUID();
-        s.state = 'dispersed';
-        var td = btn.closest('td');
-        if (td){ td.innerHTML = disabledDispersarHTML(); }
-        showToast('success', 'Dispersión exitosa', 'Enviado a STP · ' + money(s.liquidar) + ' → CLABE ****' + s.clabe.slice(-4) + ' · idempotency_key ' + uuid.slice(0, 8) + '… · registrado en log de auditoría.');
-      } else {
-        var uuid2 = genUUID();
-        btn.classList.remove('loading');
-        btn.disabled = false;
-        btn.textContent = 'Dispersar';
-        showToast('error', 'Error en STP', 'La dispersión falló. Las operaciones siguen en estatus pendiente. Código de error registrado en el log. Reintenta con nuevo UUID ' + uuid2.slice(0, 8) + '….');
-      }
-    }, 1300);
+    if (!s || s.state === 'dispersed') return;
+    openConfirm(s, btn);
   }
+
+  function openConfirm(s, btn){
+    confirmRow = s; confirmRowBtn = btn;
+    document.getElementById('velCfComercio').textContent = s.comercio;
+    document.getElementById('velCfSucursal').textContent = 'Matriz';
+    document.getElementById('velCfMonto').textContent = money(s.liquidar);
+    document.getElementById('velCfClabe').textContent = '****' + s.clabe.slice(-4);
+    var ok = document.getElementById('velConfirmOk');
+    ok.disabled = false; ok.classList.remove('loading'); ok.textContent = 'Confirmar dispersión';
+    document.getElementById('velConfirmCancel').disabled = false;
+    dispersingActive = false;
+    document.getElementById('velConfirmModal').style.display = 'flex';
+  }
+
+  document.getElementById('velConfirmOk').addEventListener('click', function(){
+    if (!confirmRow) return;
+    var ok = this;
+    ok.disabled = true;
+    ok.classList.add('loading');
+    ok.innerHTML = '<span class="vel-spinner" aria-hidden="true"></span>Dispersando..';
+    dispersingActive = true;
+    if (confirmRow.scenario === 'confirm'){
+      document.getElementById('velConfirmCancel').disabled = false;
+      dispersTimeout = setTimeout(function(){ finishDispersion('success'); }, 6000);
+    } else {
+      document.getElementById('velConfirmCancel').disabled = true;
+      var sc = confirmRow.scenario;
+      dispersTimeout = setTimeout(function(){ finishDispersion(sc); }, 1400);
+    }
+  });
+
+  function finishDispersion(result){
+    if (dispersTimeout){ clearTimeout(dispersTimeout); dispersTimeout = null; }
+    dispersingActive = false;
+    var s = confirmRow, btn = confirmRowBtn;
+    document.getElementById('velConfirmModal').style.display = 'none';
+    if (!s){ return; }
+    if (result === 'success'){
+      var uuid = genUUID();
+      s.state = 'dispersed';
+      var td = btn.closest('td');
+      if (td){ td.innerHTML = disabledDispersarHTML(); }
+      showToast('success', 'Dispersión exitosa', 'Enviado a STP · ' + money(s.liquidar) + ' → CLABE ****' + s.clabe.slice(-4) + ' · idempotency_key ' + uuid.slice(0, 8) + '… · registrado en log de auditoría.');
+    } else {
+      var uuid2 = genUUID();
+      showToast('error', 'Error en STP', 'La dispersión falló. Las operaciones siguen en estatus pendiente. Código de error registrado en el log. Reintenta con nuevo UUID ' + uuid2.slice(0, 8) + '….');
+    }
+    confirmRow = null; confirmRowBtn = null;
+  }
+
+  function onConfirmDismiss(){
+    if (dispersingActive){
+      document.getElementById('velModal').style.display = 'flex';
+    } else {
+      document.getElementById('velConfirmModal').style.display = 'none';
+      confirmRow = null; confirmRowBtn = null;
+    }
+  }
+  document.getElementById('velConfirmCancel').addEventListener('click', onConfirmDismiss);
+  document.getElementById('velConfirmClose').addEventListener('click', onConfirmDismiss);
+  document.getElementById('velConfirmModal').addEventListener('click', function(e){ if (e.target === this) onConfirmDismiss(); });
 
   document.getElementById('velBackBtn').addEventListener('click', function(){
     detailView.style.display = 'none';
@@ -511,8 +678,19 @@
   var tabs = document.querySelectorAll('.vel-tab');
   for (var t = 0; t < tabs.length; t++){
     tabs[t].addEventListener('click', function(){
-      for (var m = 0; m < tabs.length; m++){ tabs[m].classList.remove('active'); }
-      this.classList.add('active');
+      var self = this;
+      requestLeave(function(){
+        for (var m = 0; m < tabs.length; m++){ tabs[m].classList.remove('active'); }
+        self.classList.add('active');
+      });
+    });
+  }
+
+  var navs = document.querySelectorAll('[data-nav]');
+  for (var nv = 0; nv < navs.length; nv++){
+    navs[nv].addEventListener('click', function(e){
+      e.preventDefault();
+      requestLeave(function(){});
     });
   }
 })();
