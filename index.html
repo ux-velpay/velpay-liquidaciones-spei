@@ -127,6 +127,9 @@
   .vel-suc-sub{display:flex;flex-direction:column;gap:2px;}
   .vel-suc-sub .vel-suc-sub-name{font-size:14px;font-weight:600;color:var(--vel-text);}
   .vel-suc-sub .vel-suc-clabe{font-size:11px;color:#3c3489;background:#eeedfe;padding:2px 8px;border-radius:4px;align-self:flex-start;font-variant-numeric:tabular-nums;margin-top:1px;}
+  .vel-suc-row.vel-mov-link{cursor:pointer;}
+  .vel-suc-row.vel-mov-link:hover{background:#f6f4ff;}
+  .vel-mov-anulado{color:#d85a30;text-decoration:line-through;font-weight:600;}
 
   .vel-btn-dispersar.loading{background:#8b6cf0;cursor:default;}
   .vel-btn-dispersar:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;pointer-events:none;}
@@ -298,6 +301,35 @@
     </button>
 
     <div class="vel-suc-card" id="velSucCard"></div>
+  </section>
+
+  <section class="vel-content" id="velMovView" style="display:none;">
+    <button class="vel-suc-back" id="velMovBack">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+      <span id="velMovTitle">Movimientos brillamont</span>
+    </button>
+
+    <div class="vel-filter-row">
+      <div class="vel-search-wrap">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="text" id="velMovSearch" placeholder="Busca por banco ó N° de autorización" aria-label="Buscar por banco o número de autorización" />
+        <span class="vel-results-count" id="velMovCount">Mostrando 46 resultados</span>
+      </div>
+    </div>
+
+    <div class="vel-table-wrap" id="velMovTableWrap"></div>
+
+    <nav class="vel-pagination" aria-label="Paginación">
+      <button class="vel-page-btn active">1</button>
+      <button class="vel-page-btn">2</button>
+      <button class="vel-page-btn">3</button>
+      <button class="vel-page-btn">4</button>
+      <button class="vel-page-btn">5</button>
+      <button class="vel-page-btn">6</button>
+      <button class="vel-page-btn">7</button>
+      <span class="vel-page-dots">…</span>
+      <button class="vel-page-arrow" aria-label="Página siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </nav>
   </section>
 
   <div class="vel-toast-host" id="velToastHost" aria-live="polite" aria-atomic="false"></div>
@@ -510,7 +542,7 @@
   function cell(val, liq){ return '<div class="vel-suc-cell' + (liq ? ' liquidar' : '') + '">' + val + '</div>'; }
 
   function sucRow(s, idx){
-    return '<div class="vel-suc-row">' +
+    return '<div class="vel-suc-row vel-mov-link" data-mov-open="' + s.name + '">' +
       '<div class="vel-suc-sub"><span class="vel-suc-sub-name">' + s.name + '</span><span class="vel-suc-clabe">CLABE ' + s.clabe + '</span></div>' +
       cell(intFmt(s.trx)) + cell(money(s.importeTrx)) + cell(intFmt(s.ventas)) + cell(money(s.importeVentas)) +
       cell(intFmt(s.cancel)) + cell(money(s.importeCancel)) + cell(intFmt(s.contra)) + cell(money(s.importeContra)) +
@@ -639,6 +671,62 @@
   document.getElementById('velBackBtn').addEventListener('click', function(){
     detailView.style.display = 'none';
     listView.style.display = 'block';
+    window.scrollTo(0, 0);
+  });
+
+  var movView = document.getElementById('velMovView');
+
+  function movTemplate(){
+    var list = [];
+    for (var i = 0; i < 10; i++){
+      list.push({ fecha:'12/10/2019 16:58', tipo:'Venta', banco:'Banorte', auth:'000000', total:0.53, comision:0.00, iva:0.53, liquidar:99999.00, anulado:(i === 2) });
+    }
+    return list;
+  }
+
+  function renderMovimientos(){
+    var html = '<table><thead><tr>' +
+      '<th>Fecha y hora movimiento</th><th>Tipo movimiento</th><th></th><th>Auth</th><th>Total</th><th>Comisión</th><th>IVA</th><th>Total por liquidar</th><th style="width:40px;"></th>' +
+      '</tr></thead><tbody>';
+    var list = movTemplate();
+    for (var i = 0; i < list.length; i++){
+      var m = list[i];
+      var liq = m.anulado
+        ? '<span class="vel-mov-anulado">' + money(m.liquidar) + '</span>'
+        : '<span class="vel-amount-liquidar">' + money(m.liquidar) + '</span>';
+      html += '<tr>' +
+        '<td>' + m.fecha + '</td>' +
+        '<td>' + m.tipo + '</td>' +
+        '<td>' + m.banco + '</td>' +
+        '<td>' + m.auth + '</td>' +
+        '<td>' + money(m.total) + '</td>' +
+        '<td>' + money(m.comision) + '</td>' +
+        '<td>' + money(m.iva) + '</td>' +
+        '<td>' + liq + '</td>' +
+        '<td class="vel-row-actions">' + dotsIcon + '</td>' +
+      '</tr>';
+    }
+    document.getElementById('velMovTableWrap').innerHTML = html + '</tbody></table>';
+  }
+
+  function openMovimientos(name){
+    document.getElementById('velMovTitle').textContent = 'Movimientos ' + name;
+    document.getElementById('velMovSearch').value = '';
+    renderMovimientos();
+    detailView.style.display = 'none';
+    movView.style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  sucCard.addEventListener('click', function(e){
+    var row = e.target.closest('[data-mov-open]');
+    if (!row) return;
+    openMovimientos(row.getAttribute('data-mov-open'));
+  });
+
+  document.getElementById('velMovBack').addEventListener('click', function(){
+    movView.style.display = 'none';
+    detailView.style.display = 'block';
     window.scrollTo(0, 0);
   });
 
