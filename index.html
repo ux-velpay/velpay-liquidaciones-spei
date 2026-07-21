@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Liquidaciones — Por liquidar | Velpay Backoffice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 <style>
   :root{
     --vel-purple-900:#2d006d;
@@ -21,7 +24,7 @@
   *{box-sizing:border-box;}
   body{
     margin:0;
-    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-family:'Work Sans',-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
     background:var(--vel-bg);
     color:var(--vel-text);
     min-width:1024px;
@@ -73,11 +76,14 @@
   .vel-segment.active{background:#fff;color:#111827;box-shadow:0 1px 1.5px rgba(0,0,0,0.06);}
   .vel-segment:focus-visible, .vel-tab:focus-visible, .vel-page-btn:focus-visible{outline:2px solid var(--vel-purple-500);outline-offset:1px;}
 
-  .vel-table-wrap table{width:100%;border-collapse:collapse;background:#fff;border-radius:6px;overflow:hidden;}
-  .vel-table-wrap thead th{text-align:left;font-size:14px;font-weight:500;padding:14px 20px;color:#000;background:#f9fafb;border:1px solid var(--vel-border);border-bottom:none;}
-  .vel-table-wrap thead th:first-child{border-top-left-radius:6px;}
-  .vel-table-wrap thead th:last-child{border-top-right-radius:6px;}
-  .vel-table-wrap tbody td{padding:16px 20px;font-size:14px;color:var(--vel-text);border-bottom:1px solid var(--vel-row-border);border-left:1px solid var(--vel-row-border);border-right:1px solid var(--vel-row-border);font-variant-numeric:tabular-nums;}
+  .vel-table-wrap table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:12px;border:1px solid var(--vel-border);}
+  .vel-table-wrap thead th{text-align:left;font-size:14px;font-weight:500;padding:14px 20px;color:#000;background:#f9fafb;border:none;border-bottom:1px solid var(--vel-border);}
+  .vel-table-wrap thead th:first-child{border-top-left-radius:12px;}
+  .vel-table-wrap thead th:last-child{border-top-right-radius:12px;}
+  .vel-table-wrap tbody td{padding:16px 20px;font-size:14px;color:var(--vel-text);border-bottom:1px solid var(--vel-row-border);font-variant-numeric:tabular-nums;}
+  .vel-table-wrap tbody tr:last-child td{border-bottom:none;}
+  .vel-table-wrap tbody tr:last-child td:first-child{border-bottom-left-radius:12px;}
+  .vel-table-wrap tbody tr:last-child td:last-child{border-bottom-right-radius:12px;}
   .vel-table-wrap tbody tr:hover td{background:#fafafa;}
   .vel-amount-liquidar{color:var(--vel-purple-500);font-weight:600;}
   .vel-delta{display:inline-flex;align-items:center;gap:6px;color:#464646;}
@@ -87,6 +93,9 @@
   .vel-delta.down .vel-delta-icon{background:var(--vel-red-bg);}
   .vel-delta.down svg{stroke:#d85a30;}
   .vel-row-actions{color:#9ca3af;cursor:pointer;}
+  .vel-btn-dispersar{background:var(--vel-purple-500);color:#fff;border:none;border-radius:6px;font:inherit;font-weight:500;font-size:13px;padding:8px 16px;cursor:pointer;white-space:nowrap;}
+  .vel-btn-dispersar:hover{background:#6238e0;}
+  .vel-btn-dispersar:focus-visible{outline:2px solid var(--vel-purple-900);outline-offset:2px;}
 
   .vel-pagination{display:flex;justify-content:flex-end;align-items:center;gap:6px;padding:20px 0;}
   .vel-page-btn{min-width:32px;height:32px;border-radius:8px;border:none;background:none;font:inherit;font-size:14px;font-weight:500;color:#464646;cursor:pointer;}
@@ -97,6 +106,52 @@
 
   .vel-empty-state{background:#fff;border:1px solid var(--vel-border);border-radius:6px;padding:60px 20px;text-align:center;color:#6b7280;font-size:14px;}
   .vel-empty-state svg{stroke:#b4b2a9;display:block;margin:0 auto 12px;}
+
+  .vel-clickable{cursor:pointer;}
+  .vel-clickable:hover td{background:#f6f4ff;}
+
+  .vel-suc-back{display:inline-flex;align-items:center;gap:12px;background:none;border:none;font:inherit;font-size:22px;font-weight:600;color:var(--vel-purple-900);cursor:pointer;padding:0;margin:0 0 26px;}
+  .vel-suc-back svg{stroke:var(--vel-purple-900);}
+  .vel-suc-card{background:#fff;border:1px solid var(--vel-border);border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,0.05);overflow:hidden;}
+  .vel-suc-header,.vel-suc-row{display:grid;grid-template-columns:1.3fr repeat(9,minmax(0,1fr)) 128px;align-items:center;column-gap:4px;}
+  .vel-suc-header{padding:22px 20px;background:#f9fafb;}
+  .vel-suc-row{padding:18px 20px;border-top:1px solid var(--vel-row-border);}
+  .vel-suc-name{display:flex;align-items:flex-start;gap:9px;color:var(--vel-purple-900);font-size:16px;font-weight:600;line-height:1.25;}
+  .vel-suc-name .vel-dot{margin-top:6px;flex-shrink:0;}
+  .vel-suc-col{display:flex;flex-direction:column;gap:5px;padding:0 4px;}
+  .vel-suc-header .vel-suc-col{border-left:1px solid var(--vel-border);padding-left:12px;}
+  .vel-suc-label{font-size:11px;color:var(--vel-muted);line-height:1.25;}
+  .vel-suc-val{font-size:13px;font-weight:600;color:var(--vel-text);font-variant-numeric:tabular-nums;}
+  .vel-suc-val.liquidar{color:var(--vel-purple-500);}
+  .vel-suc-cell{padding:0 4px;font-size:13px;color:var(--vel-text);font-variant-numeric:tabular-nums;}
+  .vel-suc-cell.liquidar{color:var(--vel-purple-500);font-weight:600;}
+  .vel-suc-sub{display:flex;flex-direction:column;gap:2px;}
+  .vel-suc-sub .vel-suc-sub-name{font-size:14px;font-weight:600;color:var(--vel-text);}
+  .vel-suc-sub .vel-suc-clabe{font-size:11px;color:var(--vel-muted);}
+
+  .vel-btn-dispersar.loading{background:#8b6cf0;cursor:default;}
+  .vel-btn-dispersar:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;pointer-events:none;}
+  .vel-tip{position:relative;display:inline-block;}
+  .vel-tip-box{position:absolute;bottom:calc(100% + 8px);right:0;width:230px;background:#2d2d2d;color:#fff;font-size:12px;line-height:1.45;padding:9px 11px;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,0.22);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s;z-index:50;pointer-events:none;}
+  .vel-tip-box::after{content:"";position:absolute;top:100%;right:16px;border:6px solid transparent;border-top-color:#2d2d2d;}
+  .vel-tip:hover .vel-tip-box{opacity:1;visibility:visible;transform:translateY(0);}
+  .vel-spinner{width:12px;height:12px;border:2px solid rgba(255,255,255,0.45);border-top-color:#fff;border-radius:50%;display:inline-block;vertical-align:-1px;margin-right:7px;animation:vel-spin .6s linear infinite;}
+  @keyframes vel-spin{to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){ .vel-spinner{animation-duration:1.5s;} }
+
+  .vel-toast-host{position:fixed;top:20px;right:20px;display:flex;flex-direction:column;gap:12px;z-index:1000;}
+  .vel-toast{display:flex;align-items:flex-start;gap:12px;background:#111827;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.2);padding:16px;min-width:360px;max-width:430px;transition:opacity .3s,transform .3s;}
+  .vel-toast.leaving{opacity:0;transform:translateX(12px);}
+  .vel-toast-ic{flex-shrink:0;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .vel-toast.success .vel-toast-ic{background:#1d9e75;}
+  .vel-toast.error .vel-toast-ic{background:#e24b4a;}
+  .vel-toast.warning .vel-toast-ic{background:#e0a72c;}
+  .vel-toast-ic svg{stroke:#fff;}
+  .vel-toast-body{flex:1;min-width:0;}
+  .vel-toast-title{font-size:14px;font-weight:500;color:#fff;margin:0;line-height:1.35;}
+  .vel-toast-msg{font-size:13px;color:#9ca3af;margin:4px 0 0;line-height:1.45;}
+  .vel-toast-close{flex-shrink:0;background:none;border:none;padding:0;cursor:pointer;color:#9ca3af;display:flex;align-items:center;justify-content:center;width:20px;height:20px;}
+  .vel-toast-close:hover{color:#fff;}
 </style>
 </head>
 <body>
@@ -123,7 +178,7 @@
     </div>
   </header>
 
-  <main class="vel-content">
+  <main class="vel-content" id="velListView">
     <h1 class="vel-page-title">Liquidaciones</h1>
 
     <div class="vel-tabs">
@@ -143,10 +198,10 @@
       <div class="vel-search-wrap">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
         <input type="text" id="velSearchInput" placeholder="Busca por Comercio ó ID Comercio" aria-label="Buscar por comercio o ID comercio" />
+        <span class="vel-results-count" id="velResultsCount">Mostrando 46 resultados</span>
       </div>
-      <span class="vel-results-count" id="velResultsCount">Mostrando 46 resultados</span>
       <div class="vel-filter-right">
-        <div class="vel-date-filter">
+        <div class="vel-date-filter" id="velDateFilter">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
           <span>Fechas de corte</span>
           <svg class="vel-info" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
@@ -188,14 +243,41 @@
     </nav>
   </main>
 
+  <section class="vel-content" id="velDetailView" style="display:none;">
+    <button class="vel-suc-back" id="velBackBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+      Sucursales
+    </button>
+
+    <div class="vel-suc-card" id="velSucCard"></div>
+  </section>
+
+  <div class="vel-toast-host" id="velToastHost" aria-live="polite" aria-atomic="false"></div>
+
 <script>
 (function(){
-  var TABLE_HEAD = '<table><thead><tr><th>Comercio</th><th>Total trx</th><th>Importe transacciones</th><th>Importe abonos</th><th>Importe cargos</th><th>Importe a liquidar</th><th style="width:40px;"></th></tr></thead><tbody id="velTableBody"></tbody></table>';
+  var currentMode = 'adquirente';
+
+  function tableHead(){
+    var extra = currentMode === 'spei' ? '<th style="width:120px;"></th>' : '<th style="width:40px;"></th>';
+    return '<table><thead><tr><th>Comercio</th><th>Total trx</th><th>Importe transacciones</th><th>Importe abonos</th><th>Importe cargos</th><th>Importe a liquidar</th>' + extra + '</tr></thead><tbody id="velTableBody"></tbody></table>';
+  }
 
   var rows = [];
   for (var i = 0; i < 6; i++){
     rows.push({ comercio: 'Foliatti', trx: 10, transacciones: 99999.00, abonos: 0.00, cargos: -102.03, liquidar: 185000.00 });
   }
+
+  function speiTemplate(){
+    return [
+      { id:0, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285712', scenario:'success', state:'pending' },
+      { id:1, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285001', scenario:'already', state:'dispersed' },
+      { id:2, comercio:'Brillamont', trx:10, transacciones:99999.00, abonos:0.00, cargos:-102.03, liquidar:185000.00, clabe:'328593285777', scenario:'fail', state:'pending' }
+    ];
+  }
+  var speiRows = speiTemplate();
+
+  function activeData(){ return currentMode === 'spei' ? speiRows : rows; }
 
   function fmt(n){
     return Math.abs(n).toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -211,19 +293,28 @@
       wrap.innerHTML = '<div class="vel-empty-state"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"></path><path d="m3 3 18 18"></path></svg>No se encontraron comercios con ese criterio de búsqueda.</div>';
       return;
     }
-    if (!wrap.querySelector('table')){ wrap.innerHTML = TABLE_HEAD; }
+    if (!wrap.querySelector('table')){ wrap.innerHTML = tableHead(); }
     var body = document.getElementById('velTableBody');
     var html = '';
     for (var i = 0; i < list.length; i++){
       var r = list[i];
-      html += '<tr>' +
+      var lastCell;
+      if (currentMode === 'spei'){
+        lastCell = r.state === 'dispersed'
+          ? '<td>' + disabledDispersarHTML() + '</td>'
+          : '<td><button class="vel-btn-dispersar" data-dispersar data-suc-id="' + r.id + '">Dispersar</button></td>';
+      } else {
+        lastCell = '<td class="vel-row-actions">' + dotsIcon + '</td>';
+      }
+      var rowAttrs = currentMode === 'spei' ? ' class="vel-clickable" data-row-open' : '';
+      html += '<tr' + rowAttrs + '>' +
         '<td>' + r.comercio + '</td>' +
         '<td>' + r.trx + '</td>' +
         '<td>$' + fmt(r.transacciones) + '</td>' +
         '<td><span class="vel-delta up">' + upIcon + '$' + fmt(r.abonos) + '</span></td>' +
         '<td><span class="vel-delta down">' + downIcon + (r.cargos < 0 ? '-' : '') + '$' + fmt(r.cargos) + '</span></td>' +
         '<td class="vel-amount-liquidar">$' + fmt(r.liquidar) + '</td>' +
-        '<td class="vel-row-actions">' + dotsIcon + '</td>' +
+        lastCell +
       '</tr>';
     }
     body.innerHTML = html;
@@ -233,7 +324,8 @@
 
   document.getElementById('velSearchInput').addEventListener('input', function(e){
     var q = e.target.value.trim().toLowerCase();
-    var filtered = q ? rows.filter(function(r){ return r.comercio.toLowerCase().indexOf(q) !== -1; }) : rows;
+    var data = activeData();
+    var filtered = q ? data.filter(function(r){ return r.comercio.toLowerCase().indexOf(q) !== -1; }) : data;
     renderRows(filtered);
     document.getElementById('velResultsCount').textContent = 'Mostrando ' + filtered.length + ' resultados';
   });
@@ -255,19 +347,166 @@
       }
       this.classList.add('active');
       this.setAttribute('aria-pressed', 'true');
-      var mode = this.dataset.segment;
+      currentMode = this.dataset.segment;
       var mainAction = document.getElementById('velMainAction');
       var wrap = document.getElementById('velTableWrap');
-      if (mode === 'spei'){
-        mainAction.textContent = 'Dispersar';
-        wrap.innerHTML = '<div class="vel-empty-state"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>Vista SPEI — agrupamiento por Comercio + Sucursal, CLABE y dispersión (26028-VEL-BO). Próxima iteración de este prototipo.</div>';
-      } else {
-        mainAction.textContent = 'Generar layout';
-        wrap.innerHTML = TABLE_HEAD;
-        renderRows(rows);
-      }
+      mainAction.style.display = currentMode === 'spei' ? 'none' : '';
+      document.getElementById('velDateFilter').style.display = currentMode === 'spei' ? 'none' : '';
+      if (currentMode === 'spei'){ speiRows = speiTemplate(); }
+      document.getElementById('velSearchInput').value = '';
+      wrap.innerHTML = tableHead();
+      renderRows(activeData());
+      document.getElementById('velResultsCount').textContent = 'Mostrando ' + activeData().length + ' resultados';
     });
   }
+
+  var listView = document.getElementById('velListView');
+  var detailView = document.getElementById('velDetailView');
+  var sucCard = document.getElementById('velSucCard');
+
+  function intFmt(n){ return n.toLocaleString('es-MX'); }
+  function money(n){ return '$' + fmt(n); }
+
+  function sucTemplate(){
+    return [
+      { name:'Brillamont Centro', clabe:'328593285712', trx:4873, importeTrx:53603, ventas:4873, importeVentas:53603, cancel:0, importeCancel:0, contra:0, importeContra:0, liquidar:52336.02, scenario:'success', state:'pending' },
+      { name:'Brillamont Norte',  clabe:'328593285001', trx:1200, importeTrx:12000, ventas:1200, importeVentas:12000, cancel:3, importeCancel:150, contra:0, importeContra:0, liquidar:11700, scenario:'already', state:'dispersed' },
+      { name:'Brillamont Sur',    clabe:'328593285777', trx:900,  importeTrx:9000,  ventas:900,  importeVentas:9000,  cancel:1, importeCancel:80,  contra:1, importeContra:200, liquidar:8600, scenario:'fail', state:'pending' }
+    ];
+  }
+  var sucursales = sucTemplate();
+
+  function col(label, val, liq){
+    return '<div class="vel-suc-col"><span class="vel-suc-label">' + label + '</span><span class="vel-suc-val' + (liq ? ' liquidar' : '') + '">' + val + '</span></div>';
+  }
+  function cell(val, liq){ return '<div class="vel-suc-cell' + (liq ? ' liquidar' : '') + '">' + val + '</div>'; }
+
+  function sucRow(s, idx){
+    return '<div class="vel-suc-row">' +
+      '<div class="vel-suc-sub"><span class="vel-suc-sub-name">' + s.name + '</span><span class="vel-suc-clabe">CLABE ' + s.clabe + '</span></div>' +
+      cell(intFmt(s.trx)) + cell(money(s.importeTrx)) + cell(intFmt(s.ventas)) + cell(money(s.importeVentas)) +
+      cell(intFmt(s.cancel)) + cell(money(s.importeCancel)) + cell(intFmt(s.contra)) + cell(money(s.importeContra)) +
+      cell(money(s.liquidar), true) +
+      '<div class="vel-row-actions" style="justify-self:center;">' + dotsIcon + '</div>' +
+    '</div>';
+  }
+
+  function renderSucursales(){
+    var a = { trx:0, importeTrx:0, ventas:0, importeVentas:0, cancel:0, importeCancel:0, contra:0, importeContra:0, liquidar:0 };
+    for (var i = 0; i < sucursales.length; i++){
+      var s = sucursales[i];
+      a.trx += s.trx; a.importeTrx += s.importeTrx; a.ventas += s.ventas; a.importeVentas += s.importeVentas;
+      a.cancel += s.cancel; a.importeCancel += s.importeCancel; a.contra += s.contra; a.importeContra += s.importeContra; a.liquidar += s.liquidar;
+    }
+    var header = '<div class="vel-suc-header">' +
+      '<div class="vel-suc-name"><span class="vel-dot" aria-hidden="true"></span><span>Brillamont<br />ecommerce</span></div>' +
+      col('Total de trx', intFmt(a.trx)) +
+      col('Importe de trx', money(a.importeTrx)) +
+      col('Ventas', intFmt(a.ventas)) +
+      col('Importe de ventas', money(a.importeVentas)) +
+      col('Cancelaciones', intFmt(a.cancel)) +
+      col('Importe de cancelaciones', money(a.importeCancel)) +
+      col('Contracargos', intFmt(a.contra)) +
+      col('Importe de contracargos', money(a.importeContra)) +
+      col('Importe a liquidar', money(a.liquidar), true) +
+      '<div></div>' +
+    '</div>';
+    var rows = '';
+    for (var j = 0; j < sucursales.length; j++){ rows += sucRow(sucursales[j], j); }
+    sucCard.innerHTML = header + rows;
+  }
+
+  function openSucursales(){
+    sucursales = sucTemplate();
+    renderSucursales();
+    listView.style.display = 'none';
+    detailView.style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  document.getElementById('velTableWrap').addEventListener('click', function(e){
+    var disp = e.target.closest('[data-dispersar]');
+    if (disp){ handleDispersar(disp); return; }
+    var tr = e.target.closest('[data-row-open]');
+    if (!tr) return;
+    openSucursales();
+  });
+
+  function disabledDispersarHTML(){
+    return '<span class="vel-tip"><button class="vel-btn-dispersar" disabled>Dispersar</button>' +
+      '<span class="vel-tip-box">Este grupo ya fue dispersado exitosamente. El sistema no genera un nuevo envío a STP.</span></span>';
+  }
+
+  function handleDispersar(btn){
+    var id = parseInt(btn.getAttribute('data-suc-id'), 10);
+    var s = null;
+    for (var i = 0; i < speiRows.length; i++){ if (speiRows[i].id === id){ s = speiRows[i]; break; } }
+    if (!s) return;
+
+    if (s.state === 'dispersed'){
+      showToast('warning', 'Ya dispersado — 409', 'Este grupo ya fue dispersado exitosamente. El sistema no genera un nuevo envío a STP.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+    btn.innerHTML = '<span class="vel-spinner" aria-hidden="true"></span>Dispersando..';
+
+    setTimeout(function(){
+      if (s.scenario === 'success'){
+        var uuid = genUUID();
+        s.state = 'dispersed';
+        var td = btn.closest('td');
+        if (td){ td.innerHTML = disabledDispersarHTML(); }
+        showToast('success', 'Dispersión exitosa', 'Enviado a STP · ' + money(s.liquidar) + ' → CLABE ****' + s.clabe.slice(-4) + ' · idempotency_key ' + uuid.slice(0, 8) + '… · registrado en log de auditoría.');
+      } else {
+        var uuid2 = genUUID();
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        btn.textContent = 'Dispersar';
+        showToast('error', 'Error en STP', 'La dispersión falló. Las operaciones siguen en estatus pendiente. Código de error registrado en el log. Reintenta con nuevo UUID ' + uuid2.slice(0, 8) + '….');
+      }
+    }, 1300);
+  }
+
+  document.getElementById('velBackBtn').addEventListener('click', function(){
+    detailView.style.display = 'none';
+    listView.style.display = 'block';
+    window.scrollTo(0, 0);
+  });
+
+  function genUUID(){
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+      var r = (Math.random() * 16) | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  var toastIcons = {
+    success: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"></path></svg>',
+    error:   '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>',
+    warning: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v7M12 18h.01"></path></svg>'
+  };
+  var closeIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>';
+
+  function showToast(type, title, msg){
+    var host = document.getElementById('velToastHost');
+    var el = document.createElement('div');
+    el.className = 'vel-toast ' + type;
+    el.innerHTML = '<span class="vel-toast-ic">' + toastIcons[type] + '</span>' +
+      '<div class="vel-toast-body"><p class="vel-toast-title">' + title + '</p>' +
+      (msg ? '<p class="vel-toast-msg">' + msg + '</p>' : '') + '</div>' +
+      '<button class="vel-toast-close" aria-label="Cerrar">' + closeIcon + '</button>';
+    host.appendChild(el);
+    var remove = function(){
+      el.classList.add('leaving');
+      setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 300);
+    };
+    el.querySelector('.vel-toast-close').addEventListener('click', remove);
+    setTimeout(remove, 5000);
+  }
+
 
   var tabs = document.querySelectorAll('.vel-tab');
   for (var t = 0; t < tabs.length; t++){
