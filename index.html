@@ -165,28 +165,29 @@
   .vel-modal-leave{background:#fff;color:var(--vel-text);border:1px solid var(--vel-border);border-radius:8px;font:inherit;font-weight:500;font-size:14px;padding:10px 20px;cursor:pointer;}
   .vel-modal-leave:hover{background:#f3f4f6;}
 
-  .vel-confirm{background:#fff;border:1px solid var(--vel-border);border-radius:16px;box-shadow:0 1px 2px rgba(16,24,40,0.05);padding:28px;width:484px;max-width:100%;display:flex;flex-direction:column;gap:24px;}
+  .vel-confirm{background:#fff;border:1px solid var(--vel-border);border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);padding:28px;width:484px;max-width:100%;display:flex;flex-direction:column;gap:24px;}
   .vel-confirm-header{display:flex;align-items:center;justify-content:space-between;}
   .vel-confirm-title-wrap{display:flex;align-items:center;gap:12px;}
   .vel-confirm-icon{background:#f5f3ff;padding:8px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
-  .vel-confirm-title{font-size:20px;font-weight:500;color:#111827;margin:0;}
-  .vel-confirm-close{background:#f3f4f6;border:none;padding:4px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-  .vel-confirm-close:hover{background:#e5e7eb;}
-  .vel-confirm-desc{font-size:14px;color:#4b5563;line-height:1.4;margin:0;}
+  .vel-confirm-title{font-size:17px;font-weight:600;color:#111827;margin:0;line-height:1.3;}
+  .vel-confirm-close{background:none;border:none;padding:6px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+  .vel-confirm-close:hover{background:#f3f4f6;}
+  .vel-confirm-close:hover svg{stroke:#111827;}
+  .vel-confirm-desc{font-size:14px;color:#374151;line-height:1.4;margin:0;}
   .vel-confirm-summary{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;}
   .vel-confirm-row{display:flex;align-items:center;justify-content:space-between;}
-  .vel-confirm-row .k{font-size:13px;font-weight:500;color:#6b7280;}
-  .vel-confirm-row .v{font-size:14px;font-weight:600;color:#111827;font-variant-numeric:tabular-nums;}
+  .vel-confirm-row .k{font-size:13px;font-weight:500;color:#4b5563;}
+  .vel-confirm-row .v{font-size:14px;font-weight:500;color:#111827;font-variant-numeric:tabular-nums;}
   .vel-confirm-row .v.monto{font-size:18px;font-weight:500;color:var(--vel-purple-500);}
   .vel-confirm-div{height:1px;background:var(--vel-border);}
-  .vel-confirm-warning{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
-  .vel-confirm-warning svg{flex-shrink:0;margin-top:2px;}
-  .vel-confirm-warning p{font-size:13px;font-weight:500;color:#92400e;line-height:1.4;margin:0;}
+  .vel-confirm-warning{background:#fffbeb;border:1px solid #fff7e0;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
+  .vel-confirm-warning svg{flex-shrink:0;margin-top:1px;}
+  .vel-confirm-warning p{font-size:13px;font-weight:500;color:#4b5563;line-height:1.4;margin:0;}
   .vel-confirm-actions{display:flex;justify-content:flex-end;gap:12px;}
-  .vel-confirm-cancel{background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:12px 20px;font:inherit;font-weight:500;font-size:15px;color:#374151;cursor:pointer;}
+  .vel-confirm-cancel{background:#fff;border:1.5px solid #d0d5dd;border-radius:8px;padding:10px 24px;font:inherit;font-weight:500;font-size:15px;color:#111827;cursor:pointer;}
   .vel-confirm-cancel:hover{background:#f9fafb;}
   .vel-confirm-cancel:disabled{opacity:.5;cursor:not-allowed;}
-  .vel-confirm-ok{background:var(--vel-purple-500);border:none;border-radius:8px;padding:12px 24px;font:inherit;font-weight:500;font-size:15px;color:#fff;cursor:pointer;box-shadow:0 1px 1px rgba(16,24,40,0.05);}
+  .vel-confirm-ok{background:var(--vel-purple-500);border:none;border-radius:8px;padding:10px 24px;font:inherit;font-weight:500;font-size:15px;color:#fff;cursor:pointer;box-shadow:0 1px 1px rgba(16,24,40,0.05);}
   .vel-confirm-ok:hover{background:#6238e0;}
   .vel-confirm-ok.loading{background:#8b6cf0;cursor:default;}
 </style>
@@ -341,7 +342,7 @@
           <span class="vel-confirm-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#754bf1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg></span>
           <h2 class="vel-confirm-title" id="velConfirmTitle">Confirmar dispersión</h2>
         </div>
-        <button class="vel-confirm-close" id="velConfirmClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6M9 9l6 6"></path></svg></button>
+        <button class="vel-confirm-close" id="velConfirmClose" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
       </div>
       <p class="vel-confirm-desc">Verifica con cuidado los detalles de la transferencia antes de continuar con la ejecución del lote SPEI.</p>
       <div class="vel-confirm-summary">
@@ -354,7 +355,7 @@
         <div class="vel-confirm-row"><span class="k">CLABE destino</span><span class="v" id="velCfClabe">****0000</span></div>
       </div>
       <div class="vel-confirm-warning">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
         <p>Esta acción ejecutará la transferencia SPEI. No se puede deshacer.</p>
       </div>
       <div class="vel-confirm-actions">
